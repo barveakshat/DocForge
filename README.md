@@ -21,7 +21,7 @@ DocForge AI is a cutting-edge document generation platform that revolutionizes h
 ### Why DocForge AI?
 
 - ✨ **AI-Powered Generation** - Leverages state-of-the-art Llama 3.3 70B model
-- 📝 **Section-by-Section Control** - Generate and refine individual sections independently  
+- 📝 **Section-by-Section Control** - Generate and refine individual sections independently
 - 🎨 **Professional Formatting** - Export polished Word docs and PowerPoint slides
 - 🔄 **Iterative Refinement** - Improve content with natural language instructions
 - 💬 **Collaboration Features** - Comments, feedback, and revision tracking
@@ -35,12 +35,14 @@ DocForge AI is a cutting-edge document generation platform that revolutionizes h
 ### Core Capabilities
 
 #### 1. **Intelligent Document Creation**
+
 - **Word Documents (.docx)** - Professional reports, articles, and documentation
 - **PowerPoint Presentations (.pptx)** - Engaging slides with structured content
 - **AI-Suggested Outlines** - One-click template generation from your topic
 - **Manual Structure Control** - Define sections/slides before generation
 
 #### 2. **Advanced Editing Suite**
+
 - **AI Refinement** - Improve sections with prompts like:
   - "Make this more formal and professional"
   - "Convert to bullet points"
@@ -51,12 +53,14 @@ DocForge AI is a cutting-edge document generation platform that revolutionizes h
 - **Database Persistence** - All changes stored in Firestore
 
 #### 3. **Professional Export**
+
 - **Word Documents** - Proper heading styles, bullet points, bold/italic formatting
 - **PowerPoint Slides** - Title slides, section dividers, professional layouts
 - **Markdown Support** - Full markdown parsing in exports
 - **Quality Output** - Publication-ready documents
 
 #### 4. **Project Management**
+
 - **Dashboard** - View all your projects at a glance
 - **History** - Access previous projects with all edits preserved
 - **Resume Editing** - Continue where you left off
@@ -67,11 +71,13 @@ DocForge AI is a cutting-edge document generation platform that revolutionizes h
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - React 18, Vite, TailwindCSS
 - Firebase SDK, Axios, React Router
 - Lucide Icons
 
 ### Backend
+
 - FastAPI (Python), Firebase Admin SDK
 - Google Firestore (NoSQL Database)
 - OpenRouter API (Llama 3.3 70B)
@@ -110,6 +116,7 @@ pip install -r requirements.txt
 ```
 
 Create `backend/.env`:
+
 ```env
 OPENROUTER_API_KEY=your_openrouter_api_key
 FIREBASE_SERVICE_ACCOUNT_JSON=path/to/serviceAccount.json
@@ -132,6 +139,7 @@ npm install
 ```
 
 Create `frontend/.env`:
+
 ```env
 VITE_FIREBASE_API_KEY=your_api_key
 VITE_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
@@ -156,6 +164,7 @@ VITE_API_BASE_URL=http://localhost:8000
 ### Start Development Servers
 
 **Terminal 1 - Backend:**
+
 ```bash
 cd backend
 venv\Scripts\activate
@@ -163,6 +172,7 @@ uvicorn main:app --reload
 ```
 
 **Terminal 2 - Frontend:**
+
 ```bash
 cd frontend
 npm run dev
@@ -222,6 +232,7 @@ DocForge/
 ### Backend (Render, Railway, Fly.io)
 
 1. Set environment variables:
+
    ```
    OPENROUTER_API_KEY=...
    FIREBASE_SERVICE_ACCOUNT_JSON=...
@@ -230,6 +241,7 @@ DocForge/
    ```
 
 2. Start command:
+
    ```bash
    uvicorn main:app --host 0.0.0.0 --port $PORT
    ```
@@ -239,11 +251,12 @@ DocForge/
 ### Frontend (Vercel, Netlify)
 
 1. Build:
+
    ```bash
    npm run build
    ```
 
-2. Set environment variables (all VITE_* vars)
+2. Set environment variables (all VITE\_\* vars)
 
 3. Deploy `dist` folder
 
@@ -254,9 +267,9 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /projects/{projectId} {
-      allow read, write: if request.auth != null && 
+      allow read, write: if request.auth != null &&
                          resource.data.user_id == request.auth.uid;
-      
+
       match /sections/{sectionId} {
         allow read, write: if request.auth != null;
       }
@@ -270,24 +283,29 @@ service cloud.firestore {
 ## 📊 API Endpoints
 
 ### Authentication
+
 - `POST /auth/verify` - Verify token
 
 ### Projects
+
 - `GET /projects` - List projects
 - `POST /projects` - Create project
 - `GET /projects/{id}` - Get project
 - `GET /projects/{id}/content` - Get sections
 
 ### Generation
+
 - `POST /generate-structured-document` - Generate with structure
 - `POST /projects/generate-outline` - AI-suggest outline
 
 ### Sections
+
 - `POST /projects/{id}/sections/{sid}/refine` - Refine section
 - `POST /projects/{id}/sections/{sid}/feedback` - Like/dislike
 - `POST /projects/{id}/sections/{sid}/comment` - Add comment
 
 ### Export
+
 - `GET /projects/{id}/export/{type}` - Export document
 
 ---

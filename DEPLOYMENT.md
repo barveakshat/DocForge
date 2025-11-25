@@ -3,6 +3,7 @@
 ## ✅ Pre-Deployment Checklist
 
 ### Code Quality
+
 - [x] Removed all console.log and print debug statements
 - [x] Updated .gitignore with comprehensive exclusions
 - [x] Removed unnecessary documentation files
@@ -10,6 +11,7 @@
 - [x] All features tested and working
 
 ### Security
+
 - [x] Environment variables properly configured
 - [x] Firebase service account key excluded from git
 - [x] API keys stored in .env files
@@ -17,6 +19,7 @@
 - [x] Firestore security rules ready
 
 ### Features Completed
+
 - [x] User authentication (Email/Password + Google Sign-In)
 - [x] AI-powered document generation (DOCX/PPTX)
 - [x] Section-by-section generation
@@ -33,6 +36,7 @@
 ### 1. Backend Deployment
 
 **Option A: Render.com**
+
 1. Create new Web Service
 2. Connect GitHub repository
 3. Configure:
@@ -42,11 +46,13 @@
 5. Deploy
 
 **Option B: Railway.app**
+
 1. Create new project from GitHub
 2. Add environment variables
 3. Deploy automatically
 
 **Environment Variables for Backend:**
+
 ```
 OPENROUTER_API_KEY=sk-or-v1-xxxxx
 FIREBASE_SERVICE_ACCOUNT_JSON=/path/to/serviceAccount.json
@@ -57,6 +63,7 @@ FRONTEND_URL=https://your-frontend-domain.com
 ### 2. Frontend Deployment
 
 **Option A: Vercel**
+
 1. Import project from GitHub
 2. Framework Preset: Vite
 3. Build Command: `npm run build`
@@ -65,6 +72,7 @@ FRONTEND_URL=https://your-frontend-domain.com
 6. Deploy
 
 **Option B: Netlify**
+
 1. New site from Git
 2. Build command: `npm run build`
 3. Publish directory: `dist`
@@ -72,6 +80,7 @@ FRONTEND_URL=https://your-frontend-domain.com
 5. Deploy
 
 **Environment Variables for Frontend:**
+
 ```
 VITE_FIREBASE_API_KEY=AIzaSyXXXXXXXXXXXX
 VITE_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
@@ -85,22 +94,23 @@ VITE_API_BASE_URL=https://your-backend-url.com
 ### 3. Firebase Configuration
 
 **Firestore Security Rules:**
+
 ```javascript
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /projects/{projectId} {
-      allow read, write: if request.auth != null && 
+      allow read, write: if request.auth != null &&
                          resource.data.user_id == request.auth.uid;
-      
+
       match /sections/{sectionId} {
         allow read, write: if request.auth != null;
       }
-      
+
       match /versions/{versionId} {
         allow read, write: if request.auth != null;
       }
-      
+
       match /comments/{commentId} {
         allow read, write: if request.auth != null;
       }
@@ -111,13 +121,16 @@ service cloud.firestore {
 
 **Firestore Indexes:**
 Create these composite indexes:
+
 1. Collection: `projects`
+
    - Fields: `user_id` (Ascending), `created_at` (Descending)
 
-2. Collection: `sections` 
+2. Collection: `sections`
    - Fields: `project_id` (Ascending), `order` (Ascending)
 
 **Authentication:**
+
 - Enable Email/Password authentication
 - Enable Google Sign-In provider
 - Add authorized domains for production
@@ -125,6 +138,7 @@ Create these composite indexes:
 ### 4. Update CORS in Backend
 
 In `backend/main.py`, update:
+
 ```python
 app.add_middleware(
     CORSMiddleware,
@@ -141,6 +155,7 @@ app.add_middleware(
 ### 5. Post-Deployment Testing
 
 Test all features:
+
 - [ ] User registration
 - [ ] Login (Email + Google)
 - [ ] Document generation
@@ -153,19 +168,22 @@ Test all features:
 ## 🔧 Monitoring & Maintenance
 
 ### Logging
+
 - Backend: Use Render/Railway logs
 - Frontend: Use Vercel/Netlify analytics
 - Firebase: Monitor Auth and Firestore usage
 
 ### Costs
+
 - **Firebase**: Free tier (Spark plan) → Blaze plan for production
 - **OpenRouter**: Pay-per-token for Llama 3.3 70B
-- **Hosting**: 
+- **Hosting**:
   - Render: $7/month (Starter)
   - Vercel: Free for hobby projects
   - Railway: $5/month base
 
 ### Scaling Considerations
+
 - Add Redis for caching
 - Implement rate limiting
 - Enable CDN for frontend
@@ -175,6 +193,7 @@ Test all features:
 ## 📊 Performance Optimization
 
 ### Frontend
+
 - [x] Vite for fast builds
 - [x] Lazy loading routes
 - [x] TailwindCSS purging
@@ -182,6 +201,7 @@ Test all features:
 - [ ] Service worker for PWA
 
 ### Backend
+
 - [x] Async operations with httpx
 - [x] Efficient Firestore queries
 - [ ] Caching with Redis (future)
@@ -190,6 +210,7 @@ Test all features:
 ## 🔒 Security Hardening
 
 ### Before Production
+
 - [ ] Review all API endpoints for auth
 - [ ] Test Firestore security rules
 - [ ] Validate all user inputs
@@ -201,6 +222,7 @@ Test all features:
 ## 📝 Environment Variables Checklist
 
 **Backend (.env):**
+
 ```
 ✓ OPENROUTER_API_KEY
 ✓ FIREBASE_SERVICE_ACCOUNT_JSON
@@ -209,6 +231,7 @@ Test all features:
 ```
 
 **Frontend (.env):**
+
 ```
 ✓ VITE_FIREBASE_API_KEY
 ✓ VITE_FIREBASE_AUTH_DOMAIN
@@ -222,6 +245,7 @@ Test all features:
 ## 🎯 Success Metrics
 
 Monitor these after deployment:
+
 - User registrations
 - Documents generated per day
 - AI API costs
@@ -235,19 +259,23 @@ Monitor these after deployment:
 ### Common Issues
 
 **CORS Errors:**
+
 - Check CORS configuration in backend
 - Verify frontend URL in backend .env
 
 **Authentication Fails:**
+
 - Verify Firebase config
 - Check authorized domains in Firebase console
 
 **Export Fails:**
+
 - Check file permissions
 - Verify exports directory exists
 - Check disk space on server
 
 **AI Generation Slow:**
+
 - Normal for Llama 3.3 70B
 - Consider implementing loading indicators
 - Check OpenRouter account balance
@@ -255,6 +283,7 @@ Monitor these after deployment:
 ## 📞 Support
 
 For deployment issues:
+
 1. Check logs in hosting platform
 2. Review Firebase console
 3. Test API endpoints with Postman
@@ -262,6 +291,6 @@ For deployment issues:
 
 ---
 
-**Deployment Date:** _________________
-**Deployed By:** _________________
-**Production URL:** _________________
+**Deployment Date:** ********\_********
+**Deployed By:** ********\_********
+**Production URL:** ********\_********
