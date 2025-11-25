@@ -1,13 +1,14 @@
-// TODO: Replace with your actual Firebase configuration
-// Get these values from Firebase Console > Project Settings > General > Your apps > SDK setup and configuration
+// Firebase configuration using environment variables
+// Set these in your .env file with VITE_ prefix
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCaVnLP9YDFT1wWRr-UIIq42L1ilrMSJwc",
-  authDomain: "aidocgenerator-e1299.firebaseapp.com",
-  projectId: "aidocgenerator-e1299",
-  storageBucket: "aidocgenerator-e1299.firebasestorage.app",
-  messagingSenderId: "836540413398",
-  appId: "1:836540413398:web:0dfad2ce5f050f15682077",
-  measurementId: "G-QWQJQCZSX2"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
+
 export default firebaseConfig;
