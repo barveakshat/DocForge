@@ -1,18 +1,16 @@
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
-from config import FIREBASE_SERVICE_ACCOUNT_JSON, FIRESTORE_PROJECT_ID
+from config import FIREBASE_SERVICE_ACCOUNT, FIRESTORE_PROJECT_ID
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 
-if FIREBASE_SERVICE_ACCOUNT_JSON and FIREBASE_SERVICE_ACCOUNT_JSON != '/path/to/serviceAccount.json':
-    cred = credentials.Certificate(FIREBASE_SERVICE_ACCOUNT_JSON)
+# Initialize Firebase with the parsed credentials (dict)
+try:
+    cred = credentials.Certificate(FIREBASE_SERVICE_ACCOUNT)
     firebase_admin.initialize_app(cred)
-else:
-    print("WARNING: Firebase credentials not configured. Using default initialization.")
-    try:
-        firebase_admin.initialize_app()
-    except ValueError:
-        pass
+except Exception as e:
+    print(f"WARNING: Firebase initialization failed: {e}")
+    raise
 
 db = firestore.client()
 
