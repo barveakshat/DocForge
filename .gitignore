@@ -1,0 +1,88 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+*.pyc
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+.cache/
+.vite/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.fleet/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Firebase
+serviceAccount.json
+firebase-adminsdk*.json
+.firebase/
+.firebaserc
+
+# Generated Exports
+exports/
+*.docx
+*.pptx
+*.pdf
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Build files
+frontend/dist/
+frontend/build/
+backend/build/
+
+# Lock files (optional - uncomment if you want to ignore)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
