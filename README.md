@@ -4,7 +4,6 @@
 
 ![DocForge AI](https://img.shields.io/badge/DocForge-AI%20Powered-blue?style=for-the-badge)
 ![Version](https://img.shields.io/badge/version-2.0.0-green?style=for-the-badge)
-![License](https://img.shields.io/badge/license-MIT-orange?style=for-the-badge)
 
 **Create professional documents and presentations with AI-powered section-by-section generation**
 
